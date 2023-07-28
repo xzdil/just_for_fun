@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" rel="stylesheet"/>
+  </head>
+  <body style=" background-image: url(/static/bg2.png)">
+<div class="container" style="padding: 5%; background-color: white;border-radius: 10px">
+  <h4>Вы должны решить 5 загадок мудрого дерева чтобы выбраться из леса</h4>
+  <img src="/static/tree.png" id="tree" alt="chest" width="600px">
+  <div class="container">
+    <h5 id="question">There would be problem that need to be solved</h5>
+
+  </div>
+   <div id="question-container">
+  <!-- input -->
+  <div class="form-outline mb-4">
+    <input type="text" id="answer" class="form-control" />
+    <label class="form-label" for="answer">Answer</label>
+  </div>
+  <button onclick="nextQuestion()" class="btn btn-success btn-block">Submit</button>
+   </div>
+  <video id="myaudio" controls="" loop="" autoplay="" name="media" preload="auto" hidden>
+    <source src="/static/мудрое%20дерево.mp3" type="audio/mp3">
+  </video>
+</div>
+  </body>
+<script>
+  function redirectToPage(url, delay) {
+      setTimeout(function() {
+        window.location.href = url;
+      }, delay);
+    }
+      let audio = document.getElementById("myaudio");
+  		audio.volume = 1;
+      let currentCategoryIndex = 0;
+    let currentQuestionIndex = 0;
+    const categories = [];
+
+    function getRandomQuestionIndex(max) {
+      return Math.floor(Math.random() * max);
+    }
+
+    function displayQuestion() {
+      const questionElement = document.getElementById('question');
+      const currentCategory = categories[currentCategoryIndex];
+
+      // Проверяем, есть ли еще вопросы в текущей категории
+      if (currentCategoryIndex < categories.length) {
+        const randomQuestionIndex = getRandomQuestionIndex(currentCategory.questions.length);
+        questionElement.textContent = currentCategory.questions[randomQuestionIndex].question;
+        currentQuestionIndex = randomQuestionIndex;
+        console.log("Got a random question")
+      } else {
+        currentCategoryIndex++;
+        currentQuestionIndex = 0;
+        console.log(currentCategoryIndex)
+        if (currentCategoryIndex < categories.length) {
+          const randomQuestionIndex = getRandomQuestionIndex(categories[currentCategoryIndex].questions.length);
+          questionElement.textContent = categories[currentCategoryIndex].questions[randomQuestionIndex].question;
+          currentQuestionIndex = randomQuestionIndex;
+        } else {
+          alert("Поздравляю, вы ответили на все вопросы! Нажмите OK, чтобы пройти дальше  ")
+          redirectToPage("http://localhost:8000/end", 1000);
+        }
+      }
+    }
+ fetch('/static/question.json')
+      .then(response => response.json())
+      .then(data => {
+        categories.push(...data.categories);
+        displayQuestion();
+      })
+      .catch(error => console.error('Ошибка загрузки вопросов:', error));
+    function nextQuestion() {
+      const answer = document.getElementById('answer').value;
+      const currentCategory = categories[currentCategoryIndex];
+      const currentQuestion = currentCategory.questions[currentQuestionIndex];
+      if (answer.toLowerCase() === currentQuestion.answer.toLowerCase()) {
+        currentCategoryIndex++;
+        currentQuestionIndex = 0;
+        displayQuestion();
+        document.getElementById('answer').value = '';
+      } else {
+        alert('Неправильный ответ, попробуйте еще раз.');
+      }
+    }
+  </script>
+</html>
