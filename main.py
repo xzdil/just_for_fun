@@ -5,7 +5,7 @@ from starlette.staticfiles import StaticFiles
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
-port = 8080
+port = 8000
 app.mount("/static", StaticFiles(directory="static", html=True), name="static")
 
 
@@ -22,7 +22,6 @@ def read_root(request: Request):
 @app.get("/end")
 def read_root(request: Request):
     return templates.TemplateResponse("end.html", {"request": request})
-
 
 
 if __name__ == "__main__":
