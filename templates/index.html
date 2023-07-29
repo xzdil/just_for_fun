@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Questions</title>
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
     <!-- Google Fonts -->
@@ -14,10 +14,10 @@
   <body style=" background-image: url(/static/bg2.png)">
 <div class="container" style="padding: 5%; background-color: white;border-radius: 10px">
   <h4>Вы должны решить 5 загадок мудрого дерева чтобы выбраться из леса</h4>
-  <img src="/static/tree.png" id="tree" alt="chest" width="600px">
-  <div class="container">
-    <h5 id="question">There would be problem that need to be solved</h5>
 
+  <div class="container" style="display: inline-flex">
+      <img src="/static/first.jpg" id="tree" alt="chest" width="400px">
+    <h5 style="margin: 2%" id="question">There would be problem that need to be solved</h5>
   </div>
    <div id="question-container">
   <!-- input -->
@@ -25,7 +25,7 @@
     <input type="text" id="answer" class="form-control" />
     <label class="form-label" for="answer">Answer</label>
   </div>
-  <button onclick="nextQuestion()" class="btn btn-success btn-block">Submit</button>
+  <button id="button" onclick="nextQuestion()" class="btn btn-success btn-block">Submit</button>
    </div>
   <video id="myaudio" controls="" loop="" autoplay="" name="media" preload="auto" hidden>
     <source src="/static/мудрое%20дерево.mp3" type="audio/mp3">
@@ -33,6 +33,20 @@
 </div>
   </body>
 <script>
+  const audio1 = new Audio('/static/coin_02.wav');
+  const playButton = document.getElementById('button');
+
+  playButton.addEventListener('click', () => {
+  audio1.play();
+  });
+
+    function changeImage(index) {
+      const images = ['','second.jpg', 'three.jpg', 'four.jpg', 'five.jpg'];
+      const image = document.getElementById('tree');
+      image.src = "/static/" + images[index];
+      console.log("Changed image"+ image.src)
+    }
+
   function redirectToPage(url, delay) {
       setTimeout(function() {
         window.location.href = url;
@@ -67,7 +81,7 @@
           questionElement.textContent = categories[currentCategoryIndex].questions[randomQuestionIndex].question;
           currentQuestionIndex = randomQuestionIndex;
         } else {
-          alert("Поздравляю, вы ответили на все вопросы! Нажмите OK, чтобы пройти дальше  ")
+          alert("Пройдя через храм мистических существ и разгадав таинственные числа функции Эйлера, вы ощущали, как ваш разум и дух становились сильнее, проникнутые магией знаний и мистической мудрости. Светлый луч надежды и свободы встретил вас, когда вы успешно завершили последнюю загадку мудрого дерева.  ")
           redirectToPage("http://localhost:8000/end", 1000);
         }
       }
@@ -87,6 +101,7 @@
         currentCategoryIndex++;
         currentQuestionIndex = 0;
         displayQuestion();
+        changeImage(currentCategoryIndex)
         document.getElementById('answer').value = '';
       } else {
         alert('Неправильный ответ, попробуйте еще раз.');
