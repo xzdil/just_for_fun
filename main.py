@@ -5,7 +5,7 @@ from starlette.staticfiles import StaticFiles
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
-port = 8000
+port = 10000
 app.mount("/static", StaticFiles(directory="static", html=True), name="static")
 
 
