@@ -21,7 +21,7 @@
   </div>
    <div id="question-container">
   <!-- input -->
-  <div class="form-outline mb-4">
+  <div class="form-outline mb-4" style="">
     <input type="text" id="answer" class="form-control" />
     <label class="form-label" for="answer">Answer</label>
   </div>
@@ -41,7 +41,7 @@
   });
 
     function changeImage(index) {
-      const images = ['','second.jpg', 'three.jpg', 'four.jpg', 'five.jpg'];
+      const images = ['','second.jpg', 'three.jpg', 'four.jpg', 'euler.jpg'];
       const image = document.getElementById('tree');
       image.src = "/static/" + images[index];
       console.log("Changed image"+ image.src)
