@@ -10,7 +10,14 @@
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" rel="stylesheet"/>
      <style>
+            .image{
+        width: 400px; height: 400px
+      }
       @media screen and (max-width: 768px) {
+           .image{
+          width: 300px;
+          height: 300px;
+        }
     .container {
         flex-direction: column;
         width:100%/* Строчное отображение на экранах шириной до 768 пикселей */
@@ -24,7 +31,7 @@
 
 <form action="/tree" >
      <div class="container" style="display: flex">
-  <img src="/static/dog.gif"  style=" width:400px;height: 400px; margin-right: 5%" alt="">
+  <img class="image" src="/static/dog.gif"  style=" margin-right: 5%" alt="">
     <p>
         У подножия яркого просвета, где открывался путь обратно из мистического леса, верный друг героя, собака по имени Барон, ждал его с нетерпением. Когда путник и его преданный спутник встретились, радостный лай и лизание лица собакой говорили больше слов. Герой погладил Барона за ухо, чувствуя глубокую связь и верность, которая связывала их сердца на протяжении всего путешествия.
 
