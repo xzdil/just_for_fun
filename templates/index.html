@@ -13,7 +13,14 @@
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" rel="stylesheet"/>
     <style>
+      .image{
+        width: 400px; height: 400px
+      }
       @media screen and (max-width: 768px) {
+        .image{
+          width: 300px;
+          height: 300px;
+        }
   .container {
     flex-direction: column; /* Строчное отображение на экранах шириной до 768 пикселей */
   }
@@ -25,7 +32,7 @@
   <h4>Вы должны решить 5 загадок мудрого дерева чтобы выбраться из леса</h4>
 
   <div class="container" style="display: flex">
-      <img src="/static/first.jpg" id="tree" alt="chest" style="width: 400px; height: 400px">
+      <img class="image" src="/static/first.jpg" id="tree" alt="chest" >
       <h5 style="margin: 2%; " id="question">There would be problem that need to be solved</h5>
   </div>
    <div id="question-container">
