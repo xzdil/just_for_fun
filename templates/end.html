@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>End</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
@@ -8,28 +9,41 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" rel="stylesheet"/>
+     <style>
+      @media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        width:100%/* Строчное отображение на экранах шириной до 768 пикселей */
+  }
+}
+    </style>
 </head>
 <body style=" background-image: url(/static/bg2.png)">
-<div class="container" style="background-color: white; margin-top: 7%; margin-left: auto;margin-right: auto;width: 90%;border-radius: 10px;padding: 50px">
+
+<div class="container" style="padding: 5%; background-color: white;border-radius: 10px">
+
 <form action="/tree" >
-    <div style="display: inline-flex">
-  <img src="/static/dog.gif" style="margin-right: 5%">
+     <div class="container" style="display: flex">
+  <img src="/static/dog.gif"  style=" width:400px;height: 400px; margin-right: 5%" alt="">
     <p>
         У подножия яркого просвета, где открывался путь обратно из мистического леса, верный друг героя, собака по имени Барон, ждал его с нетерпением. Когда путник и его преданный спутник встретились, радостный лай и лизание лица собакой говорили больше слов. Герой погладил Барона за ухо, чувствуя глубокую связь и верность, которая связывала их сердца на протяжении всего путешествия.
 
-Смелый странник возвратился из таинственного храма мистических загадок, обладая теперь магией знаний и мудрости. Вместе с преданным спутником, они шли по знакомой земле, сияя светом мудрых открытий и тайн мистического фэнтези мира. Верность и дружба сопровождали их в этом волшебном путешествии и будут с ними всегда, когда они встретят новые вызовы и раскроют новые магические загадки в своем непрерывном стремлении к познанию.</p>
+Смелый странник возвратился из таинственного храма мистических загадок, обладая теперь магией знаний и мудрости. Вместе с преданным спутником, они шли по знакомой земле, сияя светом мудрых открытий и тайн мистического фэнтези мира. Верность и дружба сопровождали их в этом волшебном путешествии и будут с ними всегда, когда они встретят новые вызовы и раскроют новые магические загадки в своем непрерывном стремлении к познанию.
+    </p>
+    <div>
+    <br>
         </div>
-<div class="container">
+             </div>
     <br>
-        <button type="submit" class="btn btn-primary btn-block"> Вернуться обратно в лес</button>
-</div>
-</form>
+    <button type="submit" class="btn btn-primary btn-block"> Вернуться обратно в лес</button>
+
     <br>
+    </form>
     <form action="/">
         <button type="submit" class="btn btn-primary btn-block">Что это за сияние?</button>
     </form>
-
 </div>
+
  <video id="myaudio" controls="" loop="" autoplay="" name="media" preload="auto" hidden>
     <source src="/static/dog.mp3" type="audio/mp3">
   </video>
